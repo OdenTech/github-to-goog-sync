@@ -19,6 +19,7 @@ EOF
 
 
 CLIENT_EMAIL="$(jq -r .client_email <<< "${GOOGLE_CREDENTIALS}")"
+export GOOGLE_CREDENTIALS
 
 git_setup
 git remote -v
