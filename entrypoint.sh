@@ -29,6 +29,6 @@ DESTINATION_BRANCH="$(basename "${GITHUB_REF}")"
 git checkout -b "${SOURCE_BRANCH}" "${GITHUB_SHA}"
 
 git remote add destination "${DESTINATION_REPO}"
-git config --replace-all credential.helper '!gcloud auth git-helper --account='"${CLIENT_EMAIL}"' --ignore-unknown $@'
+git config --replace-all credential.helper '!/google-cloud-sdk/bin/gcloud auth git-helper --account='"${CLIENT_EMAIL}"' --ignore-unknown $@'
 
 git push destination "${SOURCE_BRANCH}:${DESTINATION_BRANCH}" -f
