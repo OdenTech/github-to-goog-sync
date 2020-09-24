@@ -9,10 +9,7 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   env:
-    GOOGLE_CREDENTIALS: |
-      ${{ secrets.GOOGLE_CREDENTIALS }}
     DESTINATION_REPO: ${{ inputs.destination_repo }}
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 branding:
   icon: git-merge
   color: purple

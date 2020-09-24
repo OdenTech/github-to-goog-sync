@@ -1,6 +1,6 @@
 #!/bin/bash -l
 
-set -e
+set -ex
 
 git_setup() {
   cat <<- EOF > "$HOME/.netrc"
@@ -21,6 +21,7 @@ EOF
 CLIENT_EMAIL="$(jq -r .client_email <<< "${GOOGLE_CREDENTIALS}")"
 
 git_setup
+git remote -v
 git remote update
 git fetch --all
 # check out the source branch at exactly the ref where we were triggered
