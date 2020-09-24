@@ -19,7 +19,8 @@ EOF
 
 
 CLIENT_EMAIL="$(jq -r .client_email <<< "${GOOGLE_CREDENTIALS}")"
-export GOOGLE_CREDENTIALS
+echo "${GOOGLE_CREDENTIALS}" > /tmp/creds.json
+/google-cloud-sdk/bin/gcloud auth activate-service-account "${CLIENT_EMAIL}" --key-file=/tmp/creds.json
 
 git_setup
 git remote -v
