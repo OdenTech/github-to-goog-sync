@@ -22,9 +22,7 @@ CLIENT_EMAIL="$(jq -r .client_email <<< "${GOOGLE_CREDENTIALS}")"
 
 git_setup
 git remote -v
-# this should have been done by the checkout step
-#git remote update
-#git fetch --all
+
 # check out the source branch at exactly the ref where we were triggered
 SOURCE_BRANCH="tmp-$(basename "${GITHUB_REF}")"
 DESTINATION_BRANCH="$(basename "${GITHUB_REF}")"
