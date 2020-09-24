@@ -1,0 +1,18 @@
+name: 'Github to google auto-sync'
+description: 'Automatically sync branches from github to google cloud source repos'
+author: '@n-oden'
+inputs:
+  destination_repo:
+    description: 'URL for google cloud source repo'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    GOOGLE_CREDENTIALS: |
+      ${{ secrets.GOOGLE_CREDENTIALS }}
+    DESTINATION_REPO: ${{ inputs.destination_repo }}
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+branding:
+  icon: git-merge
+  color: purple
