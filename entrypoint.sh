@@ -21,7 +21,7 @@ SOURCE_BRANCH="tmp-$(basename "${GITHUB_REF}")"
 DESTINATION_BRANCH="$(basename "${GITHUB_REF}")"
 
 # we really need some less fragile way to establish this mapping
-case DESTINATION_BRANCH in
+case "${DESTINATION_BRANCH}" in
   master)
     GOOGLE_CREDENTIALS="${GOOGLE_CREDENTIALS_ODEN_PRODUCTION}"
     GOOGLE_SOURCE_REPO_URL="${GOOGLE_SOURCE_REPO_URL_ODEN_PRODUCTION}"
