@@ -15,6 +15,9 @@ EOF
 
   git config --global user.email "$GITBOT_EMAIL"
   git config --global user.name "$GITHUB_ACTOR"
+  # rf: https://github.com/actions/checkout/issues/760 this works around a new perms 
+  # check added for CVE-2022-24765
+  git config --global --add safe.directory /github/workspace
 }
 
 SOURCE_BRANCH="tmp-$(basename "${GITHUB_REF}")"
