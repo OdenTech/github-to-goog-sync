@@ -32,6 +32,7 @@ EOF
   git config --global pack.packSizeLimit 2047m
   git config --global pack.windowMemory 2047m
   git config --global pack.window 1
+  git config --global http.version "HTTP/1.1"
 }
 
 SOURCE_BRANCH="tmp-$(basename "${GITHUB_REF}")"
