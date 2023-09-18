@@ -2,6 +2,8 @@
 
 set -ex
 
+export PATH=/google-cloud-sdk/bin:/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin
+
 google_auth_setup() {
   CLIENT_EMAIL="$(jq -r .client_email <<<"${GOOGLE_CREDENTIALS}")"
   echo "${GOOGLE_CREDENTIALS}" >/tmp/creds.json
@@ -19,8 +21,6 @@ git_setup() {
 EOF
   chmod 600 "$HOME/.netrc"
 
-  git config --global user.email "$GITBOT_EMAIL"
-  git config --global user.name "$GITHUB_ACTOR"
   # rf: https://github.com/actions/checkout/issues/760 this works around a new perms
   # check added for CVE-2022-24765
   git config --global --add safe.directory /github/workspace
@@ -47,6 +47,9 @@ git_setup
 
 # check out the source branch at exactly the ref where we were triggered
 git checkout -b "${SOURCE_BRANCH}" "${GITHUB_SHA}"
+
+git config user.name "$(git log -n 1 --pretty=format:%an)"
+git config user.email "$(git log -n 1 --pretty=format:%ae)"
 
 git remote add destination "${GOOGLE_SOURCE_REPO_URL}"
 
