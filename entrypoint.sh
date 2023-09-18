@@ -25,6 +25,9 @@ EOF
   # check added for CVE-2022-24765
   git config --global --add safe.directory /github/workspace
   git config --global credential.'https://source.developer.google.com/'.helper '!/google-cloud-sdk/bin/gcloud auth git-helper --account='"${CLIENT_EMAIL}"' --ignore-unknown $@'
+  git config --global http.postBuffer 157286400
+  git gc
+  git fsck
 }
 
 SOURCE_BRANCH="tmp-$(basename "${GITHUB_REF}")"
