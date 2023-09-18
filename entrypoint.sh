@@ -21,6 +21,10 @@ git_setup() {
 EOF
   chmod 600 "$HOME/.netrc"
 
+  export GIT_TRACE_PACKET=1
+  export GIT_TRACE=1
+  export GIT_CURL_VERBOSE=1
+
   # rf: https://github.com/actions/checkout/issues/760 this works around a new perms
   # check added for CVE-2022-24765
   git config --global --add safe.directory /github/workspace
@@ -33,6 +37,8 @@ EOF
   git config --global pack.windowMemory 2047m
   git config --global pack.window 1
   git config --global http.version "HTTP/1.1"
+  git gc
+  git fsck
 }
 
 SOURCE_BRANCH="tmp-$(basename "${GITHUB_REF}")"
