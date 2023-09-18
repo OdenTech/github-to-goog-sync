@@ -26,8 +26,11 @@ EOF
   git config --global --add safe.directory /github/workspace
   git config --global credential.'https://source.developer.google.com/'.helper '!/google-cloud-sdk/bin/gcloud auth git-helper --account='"${CLIENT_EMAIL}"' --ignore-unknown $@'
   git config --global http.postBuffer 157286400
-  git gc
-  git fsck
+  git config --global core.packedGitLimit 512m
+  git config --global core.packedGitWindowSize 512m
+  git config --global pack.deltaCacheSize 2047m
+  git config --global pack.packSizeLimit 2047m
+  git config --global pack.windowMemory 2047m
 }
 
 SOURCE_BRANCH="tmp-$(basename "${GITHUB_REF}")"
